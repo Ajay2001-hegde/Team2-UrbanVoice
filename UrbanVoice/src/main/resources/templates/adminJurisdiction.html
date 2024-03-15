@@ -12,6 +12,7 @@
     <link rel="icon" type="image/x-icon" th:href="@{/css/favicon.png}">
     <script src="https://kit.fontawesome.com/7d53697cb5.js" crossorigin="anonymous"></script>
     <title>Jurisdictions</title>
+    
 </head>
 <body>
 	<header class="homeheader">
@@ -56,12 +57,19 @@
 	</div>
 
 	<div class="search-bar">
-		<input type="text" id="searchInput" placeholder="Search" oninput="filterTableJurisdiction()" />
+			<input type="text" id="searchInput" placeholder="Search" oninput="filterTableJurisdiction()" />
 		<label><i class="fa-solid fa-magnifying-glass"></i></label>
+	</div>
+	
+	<div class="box_container_admin_jurisdiction">
 	</div>
 
 	<div class="tableCaption">
-		<p>JURISDICTIONS</p>
+		<button class="back_button"><a th:href="@{/urbanvoice/admin/track-complaints}">
+				<i  class="fa-solid fa-circle-arrow-left icon" aria-hidden="true"></i>
+		</a></button>
+	
+		<p style="display: inline-block; vertical-align: middle; margin-left: 10px;margin-top: -10px;">JURISDICTIONS</p>
 		<a th:href="@{/urbanvoice/admin/jurisdictions/add}"><button type="button" class="pages">Add
 				Jurisdiction</button></a>
 	</div>
