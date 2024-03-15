@@ -5,7 +5,31 @@ body {
 table {
 	width: 70%;
 }
-
+.back_button{
+	border: none;
+	background:none;
+}
+.back_button{
+	height: 50px;
+    width: 50px; /* Adjusted width for a perfect circle */
+    /* border-radius: 50%; */
+	border: none;
+	cursor: pointer;
+	background: none;
+}
+.back_button i:hover {
+	color: #F0F0F0;
+    background-color: rgba(26, 34, 55, 1);
+	border-radius: 10px;
+}
+.back_button i{
+	color: rgba(26, 34, 55, 1);
+	/* border: 2px solid white; */
+	font-size: 30px;
+	font-weight: 600;
+	padding: 5px 5px;
+	cursor: pointer
+}
 td:nth-child(5) {
 	display: flex;
 	flex-direction: row;
@@ -14,7 +38,7 @@ td:nth-child(5) {
 }
 
 .tableCaption {
-	margin-left: 390px;
+	margin-left: 200px;
 }
 
 .tableCaption p {
@@ -31,7 +55,7 @@ td:nth-child(5) {
 	font-size: 16px;
 	border-radius: 5px;
 	float: right;
-	margin-right: 390px;
+	margin-right: 203px;
 	/* margin-top: 10px; */
 	cursor: pointer;
 	border: none;
