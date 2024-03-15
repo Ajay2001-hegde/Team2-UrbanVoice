@@ -44,7 +44,7 @@
 
     <div class="hero">
         <div class="image_container">
-            <p class="lead m-0">Image will be placed here</p>
+            <p class="lead m-0">UrbanVoice</p>
         </div>
         <div class="form-container">
             <div class="form-box">
@@ -60,7 +60,8 @@
                     <div class="first_form">
                         <div class="column1"><label>First Name <span class="required-text">*</span></label>
                             <input type="text" class="input-field" id="firstName" name="firstName"
-                                pattern="[A-Za-z]{3,}" maxlength="15" autocomplete="off" placeholder="Enter your First Name"
+                                pattern="[A-Za-z]{3,}" maxlength="15" autocomplete="off"
+                                placeholder="Enter your First Name"
                                 oninvalid="setCustomValidity('Name should be more than 3 characters and contain only letters')"
                                 onchange="try{setCustomValidity('')}catch(e){}" required>
                         </div>
@@ -82,35 +83,33 @@
                         </div>
                         <div class="column2">
                             <label>Confirm Password <span class="required-text">*</span></label>
-                    <input type="password" class="input-field" id="confirmPassword" name="confirmPassword"
-                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-                        title="Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character (@$!%*?&)"
-                        autocomplete="off" placeholder="Re-enter password" required>
+                            <input type="password" class="input-field" id="confirmPassword" name="confirmPassword"
+                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                                title="Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character (@$!%*?&)"
+                                autocomplete="off" placeholder="Re-enter password" required>
                         </div>
                     </div>
 
 
 
 
-                  
-
-                    
-
                     <h5 id="passwordmessage" style="color: red;"></h5>
 
                     <label>Phone Number <span class="required-text">*</span></label>
                     <input type="tel" class="input-field" id="phone" name="phone" pattern="[0-9]{10}" maxlength="10"
-                        title="Phone Number Should contain only Digits" autocomplete="off" placeholder="Enter your Phone Number" required>
+                        title="Phone Number Should contain only Digits" autocomplete="off"
+                        placeholder="Enter your Phone Number" required>
 
                     <label for="email">Email <span class="required-text">*</span></label>
                     <div class="email_column">
                         <input type="email" class="input-field" id="email" name="email"
-                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" autocomplete="off" placeholder="Enter your Email"
-                            oninput="toggleVerifyButton()" required>
-                        
-                        <button type="button" class="verify-btn" id="verifyButton" onclick="generateOtp()">Verify</button>
+                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" autocomplete="off"
+                            placeholder="Enter your Email" oninput="toggleVerifyButton()" required>
+
+                        <button type="button" class="verify-btn" id="verifyButton"
+                            onclick="generateOtp()">Verify</button>
                     </div>
-                    
+
 
 
                     <button type="submit" class="submit-btn" id="submitButton" disabled="true">Register</button>

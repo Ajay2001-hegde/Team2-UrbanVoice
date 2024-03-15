@@ -4,10 +4,16 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" th:href="@{/css/navbarUtility.css}">
 	<link rel="stylesheet" th:href="@{/css/adminNav.css}">
 	<link rel="stylesheet" th:href="@{/css/tableUtility.css}">
 	<link rel="stylesheet" th:href="@{/css/adminOfficer.css}">
+	
+	<link rel="stylesheet" th:href="@{/css/viewModal.css}">
 	<script th:src="@{/js/script.js}"></script>
 	<script th:src="@{/js/search.js}"></script>
 	<link rel="icon" type="image/x-icon" th:href="@{/css/favicon.png}">
@@ -19,11 +25,11 @@
 	<header class="homeheader">
 		<nav class="user_nav">
 			<div class="wrapper">
-			  <div class="logo"><a th:href="@{/urbanvoice/user/track-complaints}">Logo</a></div>
+			  <div class="logo"><a th:href="@{/urbanvoice/user/track-complaints}">UrbanVoice</a></div>
 			
 			  <ul class="nav-links">
 				
-				<li class="buttons"><a th:href="@{/urbanvoice/admin/officers}">Officers</a></li>
+				<li class="buttons"><a th:href="@{/urbanvoice/admin/jurisdictions}">Jurisdictions</a></li>
 				
 				<li><a href="#">[[${adminName}]]</a></li>
 
@@ -53,10 +59,12 @@
 		<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
 	</div>
 
-	<div class="search-bar">
-		<input type="text" id="searchInput" placeholder="Search" oninput="filterTableOfficer()" />
-		<label><i class="fa-solid fa-magnifying-glass"></i></label>
+	<div class="search-bar mt-3">
+		<input type="text" id="searchInput" class="form-control" placeholder="Search" oninput="filterTableOfficer()" />
+		<label for="searchInput" style="cursor: pointer;"><i class="fa-solid fa-magnifying-glass"></i></label>
+
 	</div>
+	
 
 	<div class="tableCaption">
 		<a th:href="@{/urbanvoice/admin/track-complaints}">
