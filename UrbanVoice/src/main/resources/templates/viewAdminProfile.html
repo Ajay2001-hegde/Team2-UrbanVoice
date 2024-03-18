@@ -8,6 +8,8 @@
 	<link rel="stylesheet" th:href="@{/css/viewingProfileStyle.css}">
 	<script th:src="@{/js/script.js}"></script>
 	<link rel="icon" type="image/x-icon" th:href="@{/css/favicon.png}">
+	<script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://kit.fontawesome.com/7d53697cb5.js" crossorigin="anonymous"></script>
 	<title>Admin Profile</title>
 </head>
@@ -16,7 +18,7 @@
 	<header class="homeheader">
 		<nav class="user_nav">
 			<div class="wrapper">
-			  <div class="logo"><a th:href="@{/urbanvoice/user/track-complaints}">Logo</a></div>
+			  <div class="logo"><a th:href="@{/urbanvoice/user/track-complaints}">UrbanVoice</a></div>
 			
 			  <ul class="nav-links">
 				
@@ -47,80 +49,85 @@
 	</header>
 	
 	<div class="section">
-		
-	<div class="tableCaption view_profile">
-	<button class="back_button"><a th:href="@{/urbanvoice/admin/track-complaints}">
-				<i  class="fa-solid fa-circle-arrow-left icon" aria-hidden="true"></i>
-			</a></button>
-		<p>VIEW PROFILE</p>
-	</div>
-	
-	<div id="popup" class="popup">
-		<p th:if="${successmessage}" th:text="${successmessage}"></p>
-	</div>
-	
-	<div class="container">
-		<div class="personal-details-body">
-			<div class="profile-photo">
-				<i class="fa-solid fa-user-tie"></i>
+		<button class="back_button">
+			<a th:href="@{/urbanvoice/admin/track-complaints}">
+				<i class="fa-solid fa-circle-arrow-left icon" aria-hidden="true"></i>
+			</a>
+		</button>
+		<div class="card">
+			<div class="card-header tableCaption view_profile">
+			
+				<h3 class="card-title">VIEW PROFILE</h3>
 			</div>
-			<div class="Personal-details">
-				<div class="personal-details-row-1">
-					<div>
-						<h3>Name</h3>
-						<p th:text="${adminDetails.adminName}"></p>
-					</div>
-					<div>
-						<h3>Email</h3>
-						<p th:text="${adminDetails.email}"></p>
-					</div>
-					<div>
-						<h3>Registered Date</h3>
-						<p th:text="${#temporals.format(adminDetails.registeredDate,'yyyy-MM-dd')}"></p>
+			<div class="card-body">
+				<div id="popup" class="popup">
+					<p th:if="${successmessage}" th:text="${successmessage}"></p>
+				</div>
+				
+				<div class="container">
+					<div class="personal-details-body">
+						<div class="profile-photo">
+							<i class="fa-solid fa-user-tie"></i>
+						</div>
+						<div class="Personal-details">
+							<div class="personal-details-row-1">
+								<div>
+									<h3>Name</h3>
+									<p th:text="${adminDetails.adminName}"></p>
+								</div>
+								<div>
+									<h3>Email</h3>
+									<p th:text="${adminDetails.email}"></p>
+								</div>
+								<div>
+									<h3>Registered Date</h3>
+									<p th:text="${#temporals.format(adminDetails.registeredDate,'yyyy-MM-dd')}"></p>
+								</div>
+							</div>
+							<div class="personal-details-row-1">
+								<div class="admin_value1">
+									<h3>Jurisdictions Count</h3>
+									<p th:text="${juryCount}" class="admin_count"></p>
+								</div>
+								<div class="admin_value1">
+									<h3>Officers Count</h3>
+									<p th:text="${officersCount}" class="admin_count"></p>
+								</div>
+							</div>
+							<div class="personal-details-row-1">
+								<div class="admin_value1">
+									<h3>Complaints Raised</h3>
+									<p th:text="${complaintsCount}" class="admin_count"></p>
+								</div>
+								<div class="admin_value1">
+									<h3>Registered Users</h3>
+									<p th:text="${usersCount}" class="admin_count"></p>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="Personal-details">
-					<div class="personal-details-row-1">
-						<div class="admin_value1">
-							<h3>Jurisdictions Count</h3>
-							<p th:text="${juryCount}" class="admin_count"></p>
-						</div>
-						<div class="admin_value1">
-							<h3>Officers Count</h3>
-							<p th:text="${officersCount}" class="admin_count"></p>
-						</div>
-						
+			</div>
+			<div class="card-footer admin_view_buttons">
+	
+				<div class="row">
+					<div class="col-lg-6 admin_buttons">
+						<a th:href="@{/urbanvoice/admin/change-password}">
+							<button type="button" class="btn btn-primary btn-block"><i class="fa-solid fa-key"></i>&nbsp;Change Password</button>
+						</a>
 					</div>
-					<div class="Personal-details">
-						<div class="personal-details-row-1">
-							<div class="admin_value1">
-								<h3>Complaints Raised</h3>
-								<p th:text="${complaintsCount}" class="admin_count"></p>
-							</div>
-							<div class="admin_value1">
-								<h3>Registered Users</h3>
-								<p th:text="${usersCount}" class="admin_count"></p>
-							</div>
-						</div>
+					<div class="col-lg-6 admin_buttons">
+						<a th:href="@{/urbanvoice/admin/add-admin}">
+							<button type="button" class="btn btn-primary btn-block"><i class="fa-solid fa-user-plus"></i>&nbsp;Add Admin</button>
+						</a>
 					</div>
+				</div>
+				
+					
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="admin_view_buttons">
-		<div class="admin_buttons">
-			<a th:href="@{/urbanvoice/admin/change-password}">
-				<button type="button"class="pages"><i class="fa-solid fa-key"></i>&nbsp;Change Password</button>
-			</a>
-		</div>
-		<div class="admin_buttons" >
-			<a th:href="@{/urbanvoice/admin/add-admin}">
-				<button type="button"class="pages"><i class="fa-solid fa-user-plus"></i>&nbsp;Add Admin</button>
-			</a>
-		</div>
-	</div>
 	
 	
-	</div>
 </body>
 </html>

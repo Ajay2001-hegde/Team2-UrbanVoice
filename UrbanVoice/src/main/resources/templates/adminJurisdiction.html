@@ -16,14 +16,16 @@
 </head>
 <body>
 	<header class="homeheader">
-		<nav class="user_nav">
+		<nav class="user_nav ">
 			<div class="wrapper">
-			  <div class="logo"><a th:href="@{/urbanvoice/user/track-complaints}">Logo</a></div>
+			  <div class="logo"><a >UrbanVoice</a></div>
 			
-			  <ul class="nav-links">
+			  <ul class="nav-links ">
 				
-				<!-- <li class="buttons"><a th:href="@{/urbanvoice/admin/officers}">Officers</a></li> -->
-				<li class="buttons"><a th:href="@{/urbanvoice/admin/jurisdictions}">Jurisdictions</a></li>
+				<li class="buttons">
+					<a th:href="@{/urbanvoice/admin/track-complaints}" class="small">Home</a>
+				</li>
+				
 				<li><a href="#">[[${adminName}]]</a></li>
 
 				<li>
@@ -56,9 +58,18 @@
 		<p th:text="${errorMessage}"></p>
 	</div>
 
+<<<<<<< HEAD
 	<div class="search-bar">
 			<input type="text" id="searchInput" placeholder="Search" oninput="filterTableJurisdiction()" />
 		<label><i class="fa-solid fa-magnifying-glass"></i></label>
+=======
+	<div class="search-bar mt-3">
+			<input type="text" id="searchInput" placeholder="Search" oninput="filterTableJurisdiction()" />
+			<label for="searchInput" style="cursor: pointer;"><i class="fa-solid fa-magnifying-glass"></i></label>
+	</div>
+	
+	<div class="box_container_admin_jurisdiction">
+>>>>>>> 5d04f2c0bea32576ba950fee970b279f6081bc31
 	</div>
 	
 	<div class="box_container_admin_jurisdiction">
