@@ -18,13 +18,32 @@
 	<link rel="icon" type="image/x-icon" th:href="@{/css/favicon.png}">
 	<script src="https://kit.fontawesome.com/7d53697cb5.js" crossorigin="anonymous"></script>
 	<title>Officers</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<style>
+		@media screen and (max-width:990px) {
+
+			.nav-links li {
+				margin: 15px 10px;
+				list-style: none;
+				width: 100%;
+				border: none;
+			}
+		}
+
 		.wrapper .nav-links {
-			display: inline-flex;
-			width: 410px;
-			gap: 20px;
-			margin-bottom: 0;
+
 			justify-content: space-evenly;
+		}
+
+		label {
+		
+			background-color: transparent;
+			
 		}
 	</style>
 </head>
@@ -33,31 +52,41 @@
 	<header class="homeheader">
 		<nav class="user_nav">
 			<div class="wrapper">
-				<div class="logo"><a th:href="@{/urbanvoice/user/track-complaints}">UrbanVoice</a></div>
-
+				<div class="logo"><a th:href="@{/urbanvoice/user/track-complaints}">Logo</a></div>
+				<input type="radio" name="slider" id="menu-btn">
+				<input type="radio" name="slider" id="close-btn">
 				<ul class="nav-links">
+					<label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+					<li class="buttons"><a th:href="@{/urbanvoice/admin/officers}">Officers</a></li>
 
-					<li class="buttons"><a th:href="@{/urbanvoice/admin/jurisdictions}">Jurisdictions</a></li>
 
+					<li class="sm_links"><a th:href="@{/urbanvoice/admin/jurisdictions/add}">Add Jurisdiction</a></li>
+					<li class="sm_links"><a th:href="@{/urbanvoice/admin/view-profile}">View Profile</a></li>
+					<li class="sm_links"><a th:href="@{/urbanvoice/admin/change-password}">Change Password</a></li>
 					<li><a href="#">[[${adminName}]]</a></li>
+					<li class="sm_links"><a th:href="@{/logout}" onclick="confirmLogout(event)"><i
+								class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout </a></li>
 
 					<li>
 						<button class="user-icon-button">
 							<i class="fa-solid fa-user"></i>
 						</button>
 						<input type="checkbox" id="showDrop">
-
+						<!-- <label for="showDrop" class="mobile-item">Dropdown Menu</label> -->
 						<ul class="drop-menu">
-
+							<li><a th:href="@{/urbanvoice/admin/officers/add}">Add Officer</a></li>
+							<li><a th:href="@{/urbanvoice/admin/jurisdictions/add}">Add Jurisdiction</a></li>
+							<li><a th:href="@{/urbanvoice/admin/view-profile}">View Profile</a></li>
+							<li><a th:href="@{/urbanvoice/admin/change-password}">Change Password</a></li>
 							<li><a th:href="@{/logout}" onclick="confirmLogout(event)"><i class="fa fa-sign-out"
 										aria-hidden="true"></i>&nbsp;Logout </a></li>
-
 						</ul>
 					</li>
 				</ul>
 				<label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
 			</div>
 		</nav>
+
 	</header>
 
 	<div id="popup" class="popup">

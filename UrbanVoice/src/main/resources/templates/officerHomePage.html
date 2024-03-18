@@ -9,6 +9,7 @@
 	<link rel="stylesheet" th:href="@{/css/tableUtility.css}">
 	<link rel="stylesheet" th:href="@{/css/adminHomePage.css}">
 	<link rel="stylesheet" th:href="@{/css/viewModal.css}">
+	<link rel="stylesheet" th:href="@{/css/adminNav.css}">
 	<script th:src="@{/js/script.js}"></script>
 	<link rel="icon" type="image/x-icon" th:href="@{/css/favicon.png}">
 	<script src="https://kit.fontawesome.com/7d53697cb5.js" crossorigin="anonymous"></script>
@@ -33,38 +34,69 @@
 			}
 		});
 	</script>
+	<style>
+		.nav-links {
+			justify-content: space-evenly;
+		}
+
+		.tableCaption {
+			width: 100%;
+			text-align: center;
+		}
+		.tableCaption p{
+			margin: 0 0;
+		}
+
+
+		@media screen and (max-width:990px) {
+
+			.nav-links li {
+				margin: 15px 10px;
+				list-style: none;
+				width: 100%;
+				border: none;
+			}
+
+		}
+	</style>
 </head>
 
 <body>
 	<header class="homeheader">
 		<nav class="user_nav">
 			<div class="wrapper">
-			  <div class="logo"><a th:href="@{/urbanvoice/officer/track-complaints}">Logo</a></div>
-			  <input type="radio" name="slider" id="menu-btn">
-			  <input type="radio" name="slider" id="close-btn">
-			  <ul class="nav-links">
-				<label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
-				<li><a href="#">[[${userName}]]</a></li>
-				<li class="sm_links"><a th:href="@{/urbanvoice/officer/view-profile}" >View Profile</a></li>
-				<li  class="sm_links"><a th:href="@{/urbanvoice/officer/change-password}" >Change Password</a></li>
-				<li  class="sm_links"><a th:href="@{/logout}" onclick="confirmLogout(event)"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout </a></li>
-				<li>
-					<button class="user-icon-button">
-						<i class="fa-solid fa-user"></i>
-					</button>
-					<input type="checkbox" id="showDrop">
-					<!-- <label for="showDrop" class="mobile-item">Dropdown Menu</label> -->
-					<ul class="drop-menu">
-						<li><a th:href="@{/urbanvoice/officer/view-profile}" >View Profile</a></li>
-						<li><a th:href="@{/urbanvoice/officer/change-password}" >Change Password</a></li>
-						<li><a th:href="@{/logout}" onclick="confirmLogout(event)"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout </a></li>
-					  
-					</ul>
-				  </li>
-			  </ul>
-			  <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+				<div class="logo"><a th:href="@{/urbanvoice/user/track-complaints}">Logo</a></div>
+				<input type="radio" name="slider" id="menu-btn">
+				<input type="radio" name="slider" id="close-btn">
+				<ul class="nav-links">
+					<label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+
+					<li class="sm_links"><a th:href="@{/urbanvoice/admin/officers/add}">Add Officer</a></li>
+					<li class="sm_links"><a th:href="@{/urbanvoice/officer/view-profile}">View Profile</a></li>
+					<li class="sm_links"><a th:href="@{/urbanvoice/officer/change-password}">Change Password</a></li>
+
+					<li><a href="#">[[${officerName}]]</a></li>
+					<li class="sm_links"><a th:href="@{/logout}" onclick="confirmLogout(event)"><i
+								class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout </a></li>
+
+					<li>
+						<button class="user-icon-button">
+							<i class="fa-solid fa-user"></i>
+						</button>
+						<input type="checkbox" id="showDrop">
+						<!-- <label for="showDrop" class="mobile-item">Dropdown Menu</label> -->
+						<ul class="drop-menu">
+
+							<li><a th:href="@{/urbanvoice/officer/view-profile}">View Profile</a></li>
+							<li><a th:href="@{/urbanvoice/officer/change-password}">Change Password</a></li>
+							<li><a th:href="@{/logout}" onclick="confirmLogout(event)"><i class="fa fa-sign-out"
+										aria-hidden="true"></i>&nbsp;Logout </a></li>
+						</ul>
+					</li>
+				</ul>
+				<label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
 			</div>
-		  </nav>
+		</nav>
 	</header>
 
 	<div class="tableCaption">
@@ -91,9 +123,9 @@
 				<td th:text="${compl.landmark}"></td>
 				<td th:if="${compl.user != null}" th:text="${compl.user.phone}"></td>
 				<td style="text-align: center;">
-						<a th:href="@{/urbanvoice/officer/track-complaints/view-details(complaintId=${compl.complId})}">
-							<button type="button" class="pages">View</button>
-						</a>
+					<a th:href="@{/urbanvoice/officer/track-complaints/view-details(complaintId=${compl.complId})}">
+						<button type="button" class="pages">View</button>
+					</a>
 				</td>
 				<td style="text-align: center;">
 					<button type="button" class="view-button pages" th:attr="data-response=${compl.response}"
@@ -125,8 +157,9 @@
 	<th:block th:if="${#lists.isEmpty(complaints)}">
 		<p th:text="${noComplaintsMessage}" class="complaintMessage"></p>
 	</th:block>
-	<br/>
-	<br/>
-	
+	<br />
+	<br />
+
 </body>
+
 </html>

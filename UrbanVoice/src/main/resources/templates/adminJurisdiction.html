@@ -8,6 +8,7 @@
 	<link rel="stylesheet" th:href="@{/css/adminNav.css}">
 	<link rel="stylesheet" th:href="@{/css/tableUtility.css}">
 	<link rel="stylesheet" th:href="@{/css/adminJurisdiction.css}">
+	<link rel="stylesheet" th:href="@{/css/viewModal.css}">
 	<script th:src="@{/js/script.js}"></script>
 	<script th:src="@{/js/search.js}"></script>
 	<link rel="icon" type="image/x-icon" th:href="@{/css/favicon.png}">
@@ -29,6 +30,7 @@
 				width: 100%;
 				border: none;
 			}
+			
 		}
 
 		.wrapper .nav-links {
@@ -37,13 +39,9 @@
 		}
 
 		label {
-			font-size: 25px;
-			padding: 5px;
-			font-weight: bold;
+		
 			background-color: transparent;
-			margin-left: 5px;
-			color: #4caf50;
-			border-radius: 8px;
+			
 		}
 	</style>
 </head>
@@ -87,7 +85,7 @@
 			</div>
 		</nav>
 
-		</nav>
+	
 
 	</header>
 
@@ -112,7 +110,7 @@
 						<i class="fa-solid fa-circle-arrow-left icon" aria-hidden="true"></i>
 					</a></button>
 	
-				<p style="display: inline-block; vertical-align: middle; margin-left: 10px;margin-top: -10px;">JURISDICTIONS
+				<p style="margin-bottom: 0;">JURISDICTIONS
 				</p>
 				<a th:href="@{/urbanvoice/admin/jurisdictions/add}"><button type="button" class="pages">Add
 						Jurisdiction</button></a>

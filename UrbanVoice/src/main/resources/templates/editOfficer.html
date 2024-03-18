@@ -11,39 +11,108 @@
 	<script th:src="@{/js/script.js}"></script>
 	<link rel="icon" type="image/x-icon" th:href="@{/css/favicon.png}">
 	<title>Edit Officer</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<style>
+		.nav-links {
+			justify-content: space-evenly;
+		}
+		.edit0fficer_buttons {
+			padding: 10px 10px;
+			font-size: 17px;
+			border-radius: 5px;
+			float: right;
+			/* background-color: rgba(255, 255, 255, 0.6); */
+			margin-top: 10px;
+			cursor: pointer;
+			border: none;
+			margin-bottom: 15px;
+			width: 30%;
+		}
+		.edit0fficer_buttons a{
+			color: black;
+			text-decoration: none;
+		}
+
+		.edit0fficer_buttons:hover {
+			color: white;
+			background-color: rgba(26, 34, 55, 1);
+		}
+		.edit0fficer_buttons:hover a {
+			color: white;
+			text-decoration: none;
+			
+		}
+
+		@media screen and (max-width:990px) {
+
+			.nav-links li {
+				margin: 15px 10px;
+				list-style: none;
+				width: 100%;
+				border: none;
+			}
+			form{
+				width: 80%;
+			}
+		}
+
+		.wrapper .nav-links {
+
+			justify-content: space-evenly;
+		}
+
+		label {
+
+			background-color: transparent;
+
+		}
+		.editOfficer_footer{
+			display: flex;
+			justify-content: space-around;
+		}
+	</style>
 </head>
 
 <body>
 	<header class="homeheader">
 		<nav class="user_nav">
 			<div class="wrapper">
-			  <div class="logo"><a th:href="@{/urbanvoice/user/track-complaints}">Logo</a></div>
-			
-			  <ul class="nav-links">
-				
-				<li class="buttons"><a th:href="@{/urbanvoice/admin/officers}">Officers</a></li>
-				<li class="buttons"><a th:href="@{/urbanvoice/admin/jurisdictions}">Jurisdictions</a></li>
-				<li><a href="#">[[${adminName}]]</a></li>
+				<div class="logo"><a th:href="@{/urbanvoice/user/track-complaints}">Logo</a></div>
+				<input type="radio" name="slider" id="menu-btn">
+				<input type="radio" name="slider" id="close-btn">
+				<ul class="nav-links">
+					<label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+							<li class="sm_links"><a th:href="@{/urbanvoice/admin/jurisdictions/add}">Add Jurisdiction</a></li>
+							<li class="sm_links"><a th:href="@{/urbanvoice/admin/view-profile}">View Profile</a></li>
+							<li class="sm_links"><a th:href="@{/urbanvoice/admin/change-password}">Change Password</a></li>
+						    <li><a href="#">[[${adminName}]]</a></li>
+							<li class="sm_links"><a th:href="@{/logout}" onclick="confirmLogout(event)"><i class="fa fa-sign-out"
+										aria-hidden="true"></i>&nbsp;Logout </a></li>
 
-				<li>
-					<button class="user-icon-button">
-						<i class="fa-solid fa-user"></i>
-					</button>
-					<input type="checkbox" id="showDrop">
-					
-					<ul class="drop-menu">
-						<li><a th:href="@{/urbanvoice/admin/officers/add}">Add Officer</a></li>
-						<li><a th:href="@{/urbanvoice/admin/jurisdictions/add}">Add Jurisdiction</a></li>
-						<li><a th:href="@{/urbanvoice/admin/view-profile}">View Profile</a></li>
-						<li><a th:href="@{/urbanvoice/admin/change-password}">Change Password</a></li>
-						<li><a th:href="@{/logout}" onclick="confirmLogout(event)"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout </a></li>
-					  
-					</ul>
-				  </li>
-			  </ul>
-			  <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+					<li>
+						<button class="user-icon-button">
+							<i class="fa-solid fa-user"></i>
+						</button>
+						<input type="checkbox" id="showDrop">
+						<!-- <label for="showDrop" class="mobile-item">Dropdown Menu</label> -->
+						<ul class="drop-menu">
+							<li><a th:href="@{/urbanvoice/admin/officers/add}">Add Officer</a></li>
+							<li><a th:href="@{/urbanvoice/admin/jurisdictions/add}">Add Jurisdiction</a></li>
+							<li><a th:href="@{/urbanvoice/admin/view-profile}">View Profile</a></li>
+							<li><a th:href="@{/urbanvoice/admin/change-password}">Change Password</a></li>
+							<li><a th:href="@{/logout}" onclick="confirmLogout(event)"><i class="fa fa-sign-out"
+										aria-hidden="true"></i>&nbsp;Logout </a></li>
+						</ul>
+					</li>
+				</ul>
+				<label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
 			</div>
-		  </nav>
+		</nav>
 	</header>
 
 	<div id="popup" class="popup" th:if="${errorMessage}">
@@ -84,18 +153,15 @@
 				th:selected="${officer.juryOfficer != null && officer.juryOfficer.juryId == jurisdiction.juryId}">
 			</option>
 		</select>
-		<table>
-			<caption></caption>
-			<tr>
-				<th>
-				<td>
-					<button type="submit" class="pages pages-1">Save</button> <a
-						th:href="@{/urbanvoice/admin/officers}"><button type="button"
-							class="pages pages-2">Cancel</button></a>
-				</td>
-				</th>
-			</tr>
-		</table>
+		<div class="editOfficer_footer">
+			<button type="submit" class="edit0fficer_buttons"><a
+				th:href="@{/urbanvoice/admin/officers}">Save</a></button>
+
+			<button type="button"
+			class="edit0fficer_buttons"><a
+			th:href="@{/urbanvoice/admin/officers}">Cancel</a></button>
+		</div>
+			
 	</form>
 	<br>
 	<br>
