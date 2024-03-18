@@ -122,3 +122,23 @@ table {
 	color: white;
 	/* border: 1px solid  #4caf50; */
 }
+
+@media screen and (max-width:690px) {
+	.admin_heading {
+		display: flex;
+		align-items: center;
+		margin-top: 10px;
+		justify-content: space-between;
+		gap: 150px;
+		/* width: 100%; */
+		/* margin: auto; */
+	}
+	.tableCaption{
+		width: 50%;
+	}
+	.status-filter{
+		width: 50%;
+		margin-right: 0;
+		margin-top: 0;
+	}
+}

@@ -2,9 +2,7 @@ body {
 	background: url('../css/abstract2.jpg') center repeat-x !important;
 }
 
-table {
-	width: 90%;
-}
+
 .back_button{
 	border: none;
 	background:none;
@@ -27,7 +25,11 @@ td:nth-child(9) {
 }
 
 .tableCaption {
-	margin-left: 85px;
+	width: 80%;
+    margin: auto;
+    display: flex;
+    margin-bottom: 0;
+	justify-content: space-between;
 }
 
 .tableCaption p {
@@ -35,7 +37,7 @@ td:nth-child(9) {
 	display: inline-block;
 	background-color: rgba(255, 255, 255, 0.5);
 	color: black;
-	font-size: 18px;
+	font-size: 22px;
 	font-weight: 600;
 }
 
@@ -91,10 +93,13 @@ td:nth-child(9) {
 
 .search-bar {
 	text-align: center;
-	padding: 10px;
-	border-radius: 5px;
-	margin-top: 10px;
-	margin-bottom: 10px;
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
 }
 
 .search-bar #searchInput {
@@ -155,18 +160,14 @@ p {
 	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.tableCaption {
-	margin-left: 167px;
-	margin-bottom: -155px;
-	margin-top: 10px;
-}
+
 
 .tableCaption .pages {
 	padding: 10px 10px;
 	font-size: 17px;
 	border-radius: 5px;
 	float: right;
-	margin-right: 167px;
+	
 	/* background-color: rgba(255, 255, 255, 0.6); */
 	margin-top: 10px;
 	cursor: pointer;

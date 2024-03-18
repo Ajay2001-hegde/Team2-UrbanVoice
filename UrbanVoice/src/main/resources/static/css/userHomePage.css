@@ -114,6 +114,9 @@ table {
 	color: white;
 	border: none;
 }
+.sm_links{
+	display: none;
+}
 
 
 @media (max-width:960px){
@@ -125,6 +128,9 @@ table {
 	body{
 		scroll-behavior: smooth;
 		overflow-y: scroll;
-	}	
+	}
+	.sm_links{
+		display: block;
+	}
 }
 

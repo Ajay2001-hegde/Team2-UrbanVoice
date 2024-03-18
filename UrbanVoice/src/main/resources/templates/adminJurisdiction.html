@@ -1,53 +1,94 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/navbarUtility.css}">
-    <link rel="stylesheet" th:href="@{/css/adminNav.css}">
-    <link rel="stylesheet" th:href="@{/css/tableUtility.css}">
-    <link rel="stylesheet" th:href="@{/css/adminJurisdiction.css}">
-    <script th:src="@{/js/script.js}"></script>
-    <script th:src="@{/js/search.js}"></script>
-    <link rel="icon" type="image/x-icon" th:href="@{/css/favicon.png}">
-    <script src="https://kit.fontawesome.com/7d53697cb5.js" crossorigin="anonymous"></script>
-    <title>Jurisdictions</title>
-    
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/css/navbarUtility.css}">
+	<link rel="stylesheet" th:href="@{/css/adminNav.css}">
+	<link rel="stylesheet" th:href="@{/css/tableUtility.css}">
+	<link rel="stylesheet" th:href="@{/css/adminJurisdiction.css}">
+	<script th:src="@{/js/script.js}"></script>
+	<script th:src="@{/js/search.js}"></script>
+	<link rel="icon" type="image/x-icon" th:href="@{/css/favicon.png}">
+	<script src="https://kit.fontawesome.com/7d53697cb5.js" crossorigin="anonymous"></script>
+	<title>Jurisdictions</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+	<style>
+		@media screen and (max-width:990px) {
+
+			.nav-links li {
+				margin: 15px 10px;
+				list-style: none;
+				width: 100%;
+				border: none;
+			}
+		}
+
+		.wrapper .nav-links {
+
+			justify-content: space-evenly;
+		}
+
+		label {
+			font-size: 25px;
+			padding: 5px;
+			font-weight: bold;
+			background-color: transparent;
+			margin-left: 5px;
+			color: #4caf50;
+			border-radius: 8px;
+		}
+	</style>
 </head>
+
 <body>
 	<header class="homeheader">
-		<nav class="user_nav ">
+		<nav class="user_nav">
 			<div class="wrapper">
-			  <div class="logo"><a >UrbanVoice</a></div>
-			
-			  <ul class="nav-links ">
-				
-				<li class="buttons">
-					<a th:href="@{/urbanvoice/admin/track-complaints}" class="small">Home</a>
-				</li>
-				
-				<li><a href="#">[[${adminName}]]</a></li>
+				<div class="logo"><a th:href="@{/urbanvoice/user/track-complaints}">Logo</a></div>
+				<input type="radio" name="slider" id="menu-btn">
+				<input type="radio" name="slider" id="close-btn">
+				<ul class="nav-links">
+					<label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+					<li class="buttons"><a th:href="@{/urbanvoice/admin/officers}">Officers</a></li>
 
-				<li>
-					<button class="user-icon-button">
-						<i class="fa-solid fa-user"></i>
-					</button>
-					<input type="checkbox" id="showDrop">
-					
-					<ul class="drop-menu">
-						<li><a th:href="@{/urbanvoice/admin/officers/add}">Add Officer</a></li>
-						<li><a th:href="@{/urbanvoice/admin/jurisdictions/add}">Add Jurisdiction</a></li>
-						<li><a th:href="@{/urbanvoice/admin/view-profile}">View Profile</a></li>
-						<li><a th:href="@{/urbanvoice/admin/change-password}">Change Password</a></li>
-						<li><a th:href="@{/logout}" onclick="confirmLogout(event)"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout </a></li>
-					  
-					</ul>
-				  </li>
-			  </ul>
-			  <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+
+					<li class="sm_links"><a th:href="@{/urbanvoice/admin/jurisdictions/add}">Add Jurisdiction</a></li>
+					<li class="sm_links"><a th:href="@{/urbanvoice/admin/view-profile}">View Profile</a></li>
+					<li class="sm_links"><a th:href="@{/urbanvoice/admin/change-password}">Change Password</a></li>
+					<li><a href="#">[[${adminName}]]</a></li>
+					<li class="sm_links"><a th:href="@{/logout}" onclick="confirmLogout(event)"><i
+								class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout </a></li>
+
+					<li>
+						<button class="user-icon-button">
+							<i class="fa-solid fa-user"></i>
+						</button>
+						<input type="checkbox" id="showDrop">
+						<!-- <label for="showDrop" class="mobile-item">Dropdown Menu</label> -->
+						<ul class="drop-menu">
+							<li><a th:href="@{/urbanvoice/admin/officers/add}">Add Officer</a></li>
+							<li><a th:href="@{/urbanvoice/admin/jurisdictions/add}">Add Jurisdiction</a></li>
+							<li><a th:href="@{/urbanvoice/admin/view-profile}">View Profile</a></li>
+							<li><a th:href="@{/urbanvoice/admin/change-password}">Change Password</a></li>
+							<li><a th:href="@{/logout}" onclick="confirmLogout(event)"><i class="fa fa-sign-out"
+										aria-hidden="true"></i>&nbsp;Logout </a></li>
+						</ul>
+					</li>
+				</ul>
+				<label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
 			</div>
-		  </nav>
-		
+		</nav>
+
+		</nav>
+
 	</header>
 
 	<div id="popup" class="popup">
@@ -58,69 +99,65 @@
 		<p th:text="${errorMessage}"></p>
 	</div>
 
-<<<<<<< HEAD
-	<div class="search-bar">
+	<div class="admin_juri_content">
+		<div class="search-bar">
 			<input type="text" id="searchInput" placeholder="Search" oninput="filterTableJurisdiction()" />
-		<label><i class="fa-solid fa-magnifying-glass"></i></label>
-=======
-	<div class="search-bar mt-3">
-			<input type="text" id="searchInput" placeholder="Search" oninput="filterTableJurisdiction()" />
-			<label for="searchInput" style="cursor: pointer;"><i class="fa-solid fa-magnifying-glass"></i></label>
-	</div>
+			<label><i class="fa-solid fa-magnifying-glass"></i></label>
+		</div>
 	
-	<div class="box_container_admin_jurisdiction">
->>>>>>> 5d04f2c0bea32576ba950fee970b279f6081bc31
-	</div>
 	
-	<div class="box_container_admin_jurisdiction">
-	</div>
+	
+			<div class="tableCaption">
+				<button class="back_button"><a th:href="@{/urbanvoice/admin/track-complaints}">
+						<i class="fa-solid fa-circle-arrow-left icon" aria-hidden="true"></i>
+					</a></button>
+	
+				<p style="display: inline-block; vertical-align: middle; margin-left: 10px;margin-top: -10px;">JURISDICTIONS
+				</p>
+				<a th:href="@{/urbanvoice/admin/jurisdictions/add}"><button type="button" class="pages">Add
+						Jurisdiction</button></a>
+			</div>
+	
+			<table>
+				<caption></caption>
+				<tr>
+					<th>SL No.</th>
+					<th>Area</th>
+					<th>Ward</th>
+					<th>Layout</th>
+					<th>Actions</th>
+				</tr>
+				<th:block th:if="${not #lists.isEmpty(jurisdictions)}">
+					<tr th:each="jury , iterStat: ${jurisdictions}">
+						<td th:text="${iterStat.count}"></td>
+						<td th:text="${jury.area}"></td>
+						<td th:text="${jury.ward}"></td>
+						<td th:text="${jury.layout}"></td>
+						<td>
+							<a th:href="@{/urbanvoice/admin/jurisdictions/edit-jury(id=${jury.juryId})}"
+								onclick="return confirmEditJury(event)" th:data-jury-id="${jury.juryId}">
+								<i class="fa-regular fa-pen-to-square fa-lg"></i>
+							</a>
+							<a th:href="@{/urbanvoice/admin/jurisdictions/delete-jury(id=${jury.juryId})}"
+								onclick="return confirmDeleteJury(event)" th:data-jury-id="${jury.juryId}">
+								<i class="fa-solid fa-trash fa-lg" style="color: #f10404;"></i>
+							</a>
+						</td>
+					</tr>
+				</th:block>
+			</table>
+	
+			<th:block th:if="${#lists.isEmpty(jurisdictions)}">
+				<p th:text="${noJurisdictionsMessage}" class="complaintMessage"></p>
+			</th:block>
+			<br />
+			<br />
+	
 
-	<div class="tableCaption">
-		<button class="back_button"><a th:href="@{/urbanvoice/admin/track-complaints}">
-				<i  class="fa-solid fa-circle-arrow-left icon" aria-hidden="true"></i>
-		</a></button>
 	
-		<p style="display: inline-block; vertical-align: middle; margin-left: 10px;margin-top: -10px;">JURISDICTIONS</p>
-		<a th:href="@{/urbanvoice/admin/jurisdictions/add}"><button type="button" class="pages">Add
-				Jurisdiction</button></a>
-	</div>
 
-	<table>
-		<caption></caption>
-		<tr>
-			<th>SL No.</th>
-			<th>Area</th>
-			<th>Ward</th>
-			<th>Layout</th>
-			<th>Actions</th>
-		</tr>
-		<th:block th:if="${not #lists.isEmpty(jurisdictions)}">
-			<tr th:each="jury , iterStat: ${jurisdictions}">
-				<td th:text="${iterStat.count}"></td>
-				<td th:text="${jury.area}"></td>
-				<td th:text="${jury.ward}"></td>
-				<td th:text="${jury.layout}"></td>
-				<td>
-					<a th:href="@{/urbanvoice/admin/jurisdictions/edit-jury(id=${jury.juryId})}"
-						onclick="return confirmEditJury(event)" th:data-jury-id="${jury.juryId}">
-						<i class="fa-regular fa-pen-to-square fa-lg"></i>
-					</a>
-					<a th:href="@{/urbanvoice/admin/jurisdictions/delete-jury(id=${jury.juryId})}"
-						onclick="return confirmDeleteJury(event)" th:data-jury-id="${jury.juryId}">
-						<i class="fa-solid fa-trash fa-lg" style="color: #f10404;"></i>
-					</a>
-				</td>
-			</tr>
-		</th:block>
-	</table>
 
-	<th:block th:if="${#lists.isEmpty(jurisdictions)}">
-		<p th:text="${noJurisdictionsMessage}" class="complaintMessage"></p>
-	</th:block>
-	<br/>
-	<br/>
-	
-	
 
 </body>
+
 </html>

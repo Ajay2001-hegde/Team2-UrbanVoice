@@ -1,6 +1,9 @@
 body {
 	background: url('../css/abstract2.jpg') center repeat-x !important;
 }
+.admin_juri_content{
+	width: 100%;
+}
 
 table {
 	width: 70%;

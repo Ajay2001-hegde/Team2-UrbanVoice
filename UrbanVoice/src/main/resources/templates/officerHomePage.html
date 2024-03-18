@@ -37,31 +37,34 @@
 
 <body>
 	<header class="homeheader">
-		<div id="navbar" class="navbar top">
-			<h1 class="logo">
-				<span class="text-primary"><i class="fa-solid fa-handshake" style="color: #000;"></i>
-					&nbsp;</span>urbanvoice
-			</h1>
-			<nav>
-				<ul>
-					<li>
-						<div class="user-icon">
-							<span>[[${officerName}]]</span> &nbsp;
-							<button class="user-icon-button">
-								<i class="fa-solid fa-user-tie"></i>
-							</button>
-							<div class="dropdown-content">
-								<a th:href="@{/urbanvoice/officer/view-profile}">View Profile</a>
-								<a th:href="@{/urbanvoice/officer/change-password}">Change Password</a>
-								<a th:href="@{/logout}" onclick="confirmLogout(event)">Logout <i
-										class="fa-solid fa-right-from-bracket"
-										style="color: #e40707; margin-left: 5px; font-size:20px;"></i></a>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</nav>
-		</div>
+		<nav class="user_nav">
+			<div class="wrapper">
+			  <div class="logo"><a th:href="@{/urbanvoice/officer/track-complaints}">Logo</a></div>
+			  <input type="radio" name="slider" id="menu-btn">
+			  <input type="radio" name="slider" id="close-btn">
+			  <ul class="nav-links">
+				<label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+				<li><a href="#">[[${userName}]]</a></li>
+				<li class="sm_links"><a th:href="@{/urbanvoice/officer/view-profile}" >View Profile</a></li>
+				<li  class="sm_links"><a th:href="@{/urbanvoice/officer/change-password}" >Change Password</a></li>
+				<li  class="sm_links"><a th:href="@{/logout}" onclick="confirmLogout(event)"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout </a></li>
+				<li>
+					<button class="user-icon-button">
+						<i class="fa-solid fa-user"></i>
+					</button>
+					<input type="checkbox" id="showDrop">
+					<!-- <label for="showDrop" class="mobile-item">Dropdown Menu</label> -->
+					<ul class="drop-menu">
+						<li><a th:href="@{/urbanvoice/officer/view-profile}" >View Profile</a></li>
+						<li><a th:href="@{/urbanvoice/officer/change-password}" >Change Password</a></li>
+						<li><a th:href="@{/logout}" onclick="confirmLogout(event)"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout </a></li>
+					  
+					</ul>
+				  </li>
+			  </ul>
+			  <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+			</div>
+		  </nav>
 	</header>
 
 	<div class="tableCaption">

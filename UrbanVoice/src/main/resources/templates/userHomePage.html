@@ -54,6 +54,9 @@
 			  <ul class="nav-links">
 				<label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
 				<li><a href="#">[[${userName}]]</a></li>
+				<li class="sm_links"><a th:href="@{/urbanvoice/user/view-profile}" >View Profile</a></li>
+				<li  class="sm_links"><a th:href="@{/urbanvoice/user/change-password}" >Change Password</a></li>
+				<li  class="sm_links"><a th:href="@{/logout}" onclick="confirmLogout(event)"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout </a></li>
 				<li>
 					<button class="user-icon-button">
 						<i class="fa-solid fa-user"></i>
