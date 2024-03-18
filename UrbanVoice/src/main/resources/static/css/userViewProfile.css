@@ -1,0 +1,98 @@
+.box_container1{
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tableCaption{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.tableCaption p{
+    font-size: 20px;
+    font-weight: 500;
+}
+.back_button{
+    margin-right: 0;
+    position: relative;
+    left: -300px;
+}
+.user_container{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 50%;
+}
+.Personal-details{
+    padding: 10px;
+}
+.detail_header{
+    font-size: 18px;
+}
+.button_UserviewProfile{
+    padding: 10px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    float: right;
+    
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #F0F0F0;
+    opacity: 1;
+    color: rgba(26, 34, 55, 1);
+    font-family: 'Poppins', sans-serif;
+}
+.button_UserviewProfile a{
+    text-decoration: none;
+    color: black;
+}
+.button_UserviewProfile:hover a{
+    color: whitesmoke;
+    text-decoration: none;
+}
+.button_UserviewProfile:hover{
+    color: whitesmoke;
+    background-color: rgba(26, 34, 55, 1);
+    opacity: 1;
+    border: none;
+}
+
+@media screen and (max-width:1132px) {
+    .box_container1{
+        width: 100%;
+    }
+}
+@media screen and (max-width:954px) {
+    .box_container1{
+        margin-top: 200px;
+        width: 100%;
+    }
+    .profile-photo {
+        margin-top: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .personal-details-row-1{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .personal-details-row-2{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .user_data{
+        text-align: center;
+    }
+    .back_button {
+        margin-right: 0;
+        position: relative;
+        left: -80px;
+    }
+}

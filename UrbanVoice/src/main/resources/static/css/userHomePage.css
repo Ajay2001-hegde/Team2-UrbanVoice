@@ -121,3 +121,10 @@ table {
 		width: 100%;
 	}
 }
+@media (max-width:960px){
+	body{
+		scroll-behavior: smooth;
+		overflow-y: scroll;
+	}	
+}
+
