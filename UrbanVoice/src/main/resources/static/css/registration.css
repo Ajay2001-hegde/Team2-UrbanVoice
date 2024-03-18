@@ -336,6 +336,24 @@ button {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   z-index: 4;
 }
+@media screen and (max-width:1100px){
+  .hero{
+    height: fit-content;
+  }
+  .first_form {
+    display: flex;
+    flex-direction: column;
+  }
+  .column1 {
+    width: 100%;
+}
+.first_form > .column1 > input {
+  width: 100%;
+}
+  .column2{
+    width: 100%;
+  }
+}
 
 @media screen and (max-width: 768px) {
   .hero {
