@@ -19,49 +19,47 @@ import com.team2.urbanvoice.serviceimpl.CustomUserDetailsImpl;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
-	
-	@Autowired
-	CustomSuccessHandler customSuccessHandler;
-	@Autowired
-	CustomUserDetailsImpl customUserDetailsService;
 
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		logger.info("Configuring Security for the Application !");
-		
-		http.authorizeHttpRequests(request -> request
-				.requestMatchers("/urbanvoice/admin/track-complaints", "/urbanvoice/admin/**").hasAuthority("ADMIN")
-				.requestMatchers("/urbanvoice/user/track-complaints", "/urbanvoice/user/**").hasAuthority("USER")
-				.requestMatchers("/urbanvoice/officer/track-complaints", "/urbanvoice/officer/**").hasAuthority("OFFICER")
-				.requestMatchers("/urbanvoice/registration", "/css/**", "/urbanvoice", "/urbanvoice/generateEmailOtp",
-						"/urbanvoice/validateOtp")
-				.permitAll().anyRequest().authenticated())
-		
-				.formLogin(form -> form.loginPage("/urbanvoice/login").loginProcessingUrl("/urbanvoice/login")
-						.successHandler(customSuccessHandler).permitAll())
+    private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
-				.logout(form -> form.invalidateHttpSession(true).clearAuthentication(true)
-						.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-						.logoutSuccessUrl("/urbanvoice/login?logout").permitAll())
-				
-				.sessionManagement(session -> session.invalidSessionUrl("/login?timeout"));
+    @Autowired
+    CustomSuccessHandler customSuccessHandler;
+    @Autowired
+    CustomUserDetailsImpl customUserDetailsService;
 
-		logger.info("Application Security Configured Successfully !");
-		return http.build();
-	}
-	
-	@Bean
-	private static PasswordEncoder passwordEncoder() {
-		logger.info("Encrypting password using BCrypt Encoder !");
-		
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        logger.info("Configuring Security for the Application !");
 
-	@Autowired
-	private void configure(AuthenticationManagerBuilder auth) throws Exception {
-		logger.info("Configuring Authentication Manager !");
-		auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
-		logger.info("Authentication Manager Configured Successfully !");
-	}
+        http.authorizeHttpRequests(request -> request
+                .requestMatchers("/urbanvoice/admin/track-complaints", "/urbanvoice/admin/**").hasAuthority("ADMIN")
+                .requestMatchers("/urbanvoice/user/track-complaints", "/urbanvoice/user/**").hasAuthority("USER")
+                .requestMatchers("/urbanvoice/officer/track-complaints", "/urbanvoice/officer/**").hasAuthority("OFFICER")
+                .requestMatchers("/urbanvoice/registration", "/css/**", "/urbanvoice", "/urbanvoice/generateEmailOtp", "/urbanvoice/aboutus",
+                        "/urbanvoice/validateOtp")
+                .permitAll().anyRequest().authenticated())
+                .formLogin(form -> form.loginPage("/urbanvoice/login").loginProcessingUrl("/urbanvoice/login")
+                .successHandler(customSuccessHandler).permitAll())
+                .logout(form -> form.invalidateHttpSession(true).clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/urbanvoice/login?logout").permitAll())
+                .sessionManagement(session -> session.invalidSessionUrl("/login?timeout"));
+
+        logger.info("Application Security Configured Successfully !");
+        return http.build();
+    }
+
+    @Bean
+    private static PasswordEncoder passwordEncoder() {
+        logger.info("Encrypting password using BCrypt Encoder !");
+
+        return new BCryptPasswordEncoder();
+    }
+
+    @Autowired
+    private void configure(AuthenticationManagerBuilder auth) throws Exception {
+        logger.info("Configuring Authentication Manager !");
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+        logger.info("Authentication Manager Configured Successfully !");
+    }
 }

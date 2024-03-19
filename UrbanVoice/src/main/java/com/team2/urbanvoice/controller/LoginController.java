@@ -24,44 +24,46 @@ import jakarta.validation.Valid;
 
 @Controller
 public class LoginController {
-	private static final String LANDING_PAGE_VIEW = "urbanvoiceHome";
-	private static final String LOGIN_PAGE_VIEW = "login";
-	private static final String REGISTRATION_PAGE_VIEW = "registration";
 
-	private static final Logger log = LoggerFactory.getLogger(LoginController.class);
+    private static final String LANDING_PAGE_VIEW = "urbanvoiceHome";
+    private static final String LOGIN_PAGE_VIEW = "login";
+    private static final String REGISTRATION_PAGE_VIEW = "registration";
+    private static final String ABOUTUS_PAGE_VIEW = "aboutUs";
 
-	@Autowired
-	private UserService userService;
-	@Autowired
-	private EmailSenderService emailSenderService;
-	@Autowired
-	private ComplaintService complaintService;
+    private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 
-	@GetMapping("/urbanvoice/registration")
-	public String showRegistrationForm() {
-		return REGISTRATION_PAGE_VIEW;
-	}
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private EmailSenderService emailSenderService;
+    @Autowired
+    private ComplaintService complaintService;
 
-	@PostMapping("/urbanvoice/registration")
-	public String handleRegistration(@Valid @ModelAttribute("user") UserModel userModel, Model model,
-			BindingResult bindingResult) {
-		try {
-			userService.createUser(userModel);
-			model.addAttribute("sMessage", "You are registered Successfully !");
+    @GetMapping("/urbanvoice/registration")
+    public String showRegistrationForm() {
+        return REGISTRATION_PAGE_VIEW;
+    }
 
-			return REGISTRATION_PAGE_VIEW;
-		} catch (UrbanVoiceException e) {
-			model.addAttribute("eMessage", e.getMessage());
+    @PostMapping("/urbanvoice/registration")
+    public String handleRegistration(@Valid @ModelAttribute("user") UserModel userModel, Model model,
+            BindingResult bindingResult) {
+        try {
+            userService.createUser(userModel);
+            model.addAttribute("sMessage", "You are registered Successfully !");
 
-			return REGISTRATION_PAGE_VIEW;
-		}
-	}
+            return REGISTRATION_PAGE_VIEW;
+        } catch (UrbanVoiceException e) {
+            model.addAttribute("eMessage", e.getMessage());
 
-	@PostMapping("/urbanvoice/generateEmailOtp")
+            return REGISTRATION_PAGE_VIEW;
+        }
+    }
+
+    @PostMapping("/urbanvoice/generateEmailOtp")
     public ResponseEntity<String> generateEmailOtp(@RequestBody String email) {
         log.info("Generate OTP method is called");
         log.info("Email: {}", email);
-        
+
         try {
             String otp = emailSenderService.getotp(email);
             log.info("Generated OTP: {}", otp);
@@ -90,21 +92,26 @@ public class LoginController {
         }
     }
 
+    @GetMapping("/urbanvoice")
+    public String landingPage(Model model) {
+        long usersCount = userService.countUsers();
+        long complaintsCount = complaintService.countComplaints();
+        long closedComplaintsCount = complaintService.getCountOfClosedComplaints();
+        model.addAttribute("usersCount", usersCount);
+        model.addAttribute("complaintsCount", complaintsCount);
+        model.addAttribute("closedComplaintsCount", closedComplaintsCount);
 
-	@GetMapping("/urbanvoice")
-	public String landingPage(Model model) {
-		long usersCount = userService.countUsers();
-		long complaintsCount = complaintService.countComplaints();
-		long closedComplaintsCount = complaintService.getCountOfClosedComplaints();
-		model.addAttribute("usersCount", usersCount);
-		model.addAttribute("complaintsCount", complaintsCount);
-		model.addAttribute("closedComplaintsCount", closedComplaintsCount);
+        return LANDING_PAGE_VIEW;
+    }
 
-		return LANDING_PAGE_VIEW;
-	}
-	
-	@GetMapping("/urbanvoice/login")
-	public String loginPage() {
-		return LOGIN_PAGE_VIEW;
-	}
+    @GetMapping("/urbanvoice/login")
+    public String loginPage() {
+        return LOGIN_PAGE_VIEW;
+    }
+
+    @GetMapping("/urbanvoice/aboutus")
+    public String AboutUs() {
+        return ABOUTUS_PAGE_VIEW;
+
+    }
 }

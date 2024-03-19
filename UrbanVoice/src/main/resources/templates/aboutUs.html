@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/css/navbarUtility.css}">
+	<link rel="icon" type="image/x-icon" th:href="@{/css/favicon.png}">
+	<script src="https://kit.fontawesome.com/7d53697cb5.js" crossorigin="anonymous"></script>
+	<script th:src="@{/js/script.js}"></script>
+	<title>About Us</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        .highlight {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="wrapper">
+            <div class="logo">
+                <a href="#">UrbanVoice</a>
+            </div>
+            <input type="radio" name="slider" id="menu-btn"> <input type="radio" name="slider" id="close-btn">
+            <ul class="nav-links">
+                <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+                <li><a href="/urbanvoice">Home</a></li>
+                <li><a href="/urbanvoice/login">Login</a></li>
+            </ul>
+            <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">About Us</h1>
+                <p class="card-text lead">Welcome to UrbanVoice - your platform for citizen engagement and efficient complaint resolution!</p>
+            </div>
+        </div>
+    
+        <div class="card mt-4">
+            <div class="card-body">
+                <h2 class="card-title">Our Mission</h2>
+                <p class="card-text">At UrbanVoice, we strive to bridge the gap between citizens and local government by providing a user-friendly platform for registering complaints and monitoring their status.</p>
+            </div>
+        </div>
+    
+        <div class="card mt-4">
+            <div class="card-body">
+                <h2 class="card-title">What We Offer</h2>
+                <ul class="card-text">
+                    <li>User-friendly website for citizens to register complaints.</li>
+                    <li>Efficient communication tools for citizens and local authorities.</li>
+                    <li>Administrative tools for jurisdiction and officer management.</li>
+                    <li>Real-time monitoring of complaint status.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="card mt-4">
+            <div class="card-body">
+                <h2 class="card-title">Why Choose UrbanVoice?</h2>
+                <ul class="card-text">
+                    <li><span class="highlight">Efficiency:</span> Streamlined complaint resolution process.</li>
+                    <li><span class="highlight">Transparency:</span> Real-time tracking of complaints.</li>
+                    <li><span class="highlight">Community:</span> Engaging citizens in local governance.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="card mt-4">
+            <div class="card-body">
+                <h2 class="card-title">Contact Us</h2>
+                <p class="card-text">If you have any questions or feedback, feel free to reach out to us at <span class="highlight">urbanvoice360@gmail.com</span></p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+    </html>
