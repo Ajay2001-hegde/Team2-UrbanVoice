@@ -10,6 +10,16 @@
     <link rel="icon" type="image/x-icon" th:href="@{/css/favicon.png}">
     <script src="https://kit.fontawesome.com/7d53697cb5.js" crossorigin="anonymous"></script>
     <title>Registration Form</title>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "iyguMP7sEm97SniWE",
+      });
+   })();
+</script>
     <style>
 
     </style>
@@ -187,116 +197,96 @@
         }
 
 
-        function generateOtp() {
-            let email = document.getElementById("email").value;
+        function generatedOTP() {
+    var otpLength = 6;
+    var chars = "0123456789";
+    var OTP = "";
+    for (var i = 0; i < otpLength; i++) {
+        OTP += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return OTP;
+}
 
-            fetch("http://localhost:9006/urbanvoice/generateEmailOtp", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: email,
-            })
-                .then(response => {
-                    if (response.ok) {
-                        document.getElementById("otpsentmessage").innerText = "Otp sent successfully";
-                        document.getElementById("verifyButton").disabled = true;
-                        showOtpPopup();
-                        response.text();
-                        enableValidateButton();
-                        countdown = 60;
-                        startTimer();
-                        return response.text();
-                        // Return the promise chain to the next then block
-                    } else {
-                        throw new Error("Failed to generate OTP");
-                    }
-                })
-                .then(data => {
-                    document.getElementById("message").innerHTML = data;
-                })
-                .catch(error => console.error("Error generating OTP:", error));
-        }
+function generateOtp() {
+    var otp = generatedOTP();
+    localStorage.setItem('generatedOTP', otp);
+    var params = {
+        name: document.getElementById("userName").value,
+        email: document.getElementById("email").value,
+        message: otp // Changed 'message' to 'otp'
+    };
 
-        function validateOtp() {
-            let otp = document.getElementById("otp").value;
-            let email = document.getElementById("email").value;
-            const validateButton = document.getElementById("validateButton");
-            validateButton.style.color = "#4caf50";
+    emailjs.send("service_a4ay31k", "template_fgwofhd", params)
+        .then(response => {
+            console.log('SUCCESS!', response.status, response.text);
+            if (response.status === 200) {
+                document.getElementById("otpsentmessage").innerText = "Otp sent successfully";
+                document.getElementById("verifyButton").disabled = true;
+                showOtpPopup();
+                startTimer();
+            } else {
+                throw new Error("Failed to generate OTP");
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById("message").innerText = data;
+            enableValidateButton();
+        })
+        .catch(error => console.error("Error generating OTP:", error));
+}
 
-            fetch("http://localhost:9006/urbanvoice/validateOtp", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: '{"email":"' + email + '","otp":"' + otp + '"}', // Directly pass the formatted string
-            })
-                .then(response => {
-                    clearInterval(timer); // Stop the OTP timer
-                    document.getElementById("countdown").innerText = "";
+function validateOtp() {
+    let enteredOTP = document.getElementById("otp").value;
+    const validateButton = document.getElementById("validateButton");
+    validateButton.style.color = "#4caf50";
 
-                    if (response.ok) {
+    var storedOtp = localStorage.getItem('generatedOTP'); // Fixed typo here
 
+    if (enteredOTP === storedOtp) {
+        validateButton.disabled = true;
+        validateButton.classList.add('green');
+        document.getElementById("otpmessage").innerText = "OTP verified successfully";
+        enableRegisterButton();
+    } else {
+        document.getElementById("otpmessage").innerText = "OTP expired or invalid";
+        enableResendButton();
+    }
+}
 
-                        document.getElementById("validateButton").disabled = true;
-                        document.getElementById('validateButton').classList.add('red');
-                        document.getElementById("otpmessage").innerText = "Otp verified succesfully";
+function resendOtp() {
+    let email = document.getElementById("email").value;
+    let userName = document.getElementById("userName").value;
+    let otp = generatedOTP();
+    localStorage.setItem('generatedOTP', otp);
+    var params = {
+        name: userName,
+        email: email,
+        message: otp
+    };
 
-                        enableRegisterButton();
-                    } else {
-                        document.getElementById("otpmessage").innerText = "Otp expired or invalid";
-                        enableResendButton();
-                    }
-
-                    return response.text();
-                })
-                .then(data => {
-                    // Display the response as it is
-                    document.getElementById("message").innerText = data;
-
-                    // If the response is successful, hide the OTP popup
-                    if (document.getElementById("validateButton").disabled) {
-                        hideOtpPopup();
-                    }
-                })
-                .catch(error => {
-                    console.error("Error validating OTP:", error.message);
-                    // Handle the error here, e.g., show an error message to the user
-                    document.getElementById("message").innerText = "Error: " + error.message;
-                });
-        }
-        function resendOtp() {
-            let email = document.getElementById("email").value;
-
-            fetch("http://localhost:9006/urbanvoice/generateEmailOtp", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: email,
-            })
-                .then(response => {
-                    if (response.ok) {
-                        document.getElementById("resendButton").disabled = true;
-                        enableValidateButton();
-                        countdown = 60;
-                        startTimer();
-                        return response.text(); // Capture the response text
-                    } else {
-                        throw new Error("Error resending OTP");
-                    }
-                })
-                .then(data => {
-                    // Display the response text
-                    document.getElementById("message").innerText = data;
-                })
-                .catch(error => {
-                    console.error("Error resending OTP:", error);
-                    // Handle the error or display an error message
-                    document.getElementById("message").innerText = "Error resending OTP: " + error.message;
-                });
-        }
-
+    emailjs.send("service_a4ay31k", "template_fgwofhd", params)
+        .then(response => {
+            console.log('SUCCESS!', response.status, response.text);
+            if (response.status === 200) {
+                document.getElementById("otpsentmessage").innerText = "Otp sent successfully";
+                document.getElementById("resendButton").disabled = true;
+                enableValidateButton();
+                countdown = 60;
+                startTimer();
+                return response.text();
+            } else {
+                throw new Error("Error resending OTP");
+            }
+        })
+        .then(data => {
+            document.getElementById("message").innerText = data;
+        })
+        .catch(error => {
+            console.error("Error resending OTP:", error);
+            document.getElementById("message").innerText = "Error resending OTP: " + error.message;
+        });
+}
 
         function validatePassword() {
             let password = document.getElementById("password").value;
